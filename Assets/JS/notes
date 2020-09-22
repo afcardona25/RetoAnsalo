@@ -1,0 +1,3 @@
+to disable a button: 
+
+    btn.disabled = true 
