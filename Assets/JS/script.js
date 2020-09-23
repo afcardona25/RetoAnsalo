@@ -548,3 +548,4 @@ j_0.addEventListener("click", () => {
     
 })
 
+document.getElementById('body').onload = setTheme()
