@@ -130,7 +130,52 @@ footer{
 }
 
 //Apariencia retro
-
+.retro{
+  border: white 4px solid !important;
+  h1{
+    font-family: 'Orbitron', sans-serif;
+    color: cornsilk !important;
+  }
+  label{
+    font-family: 'Orbitron', sans-serif;
+    color: cornsilk !important;
+  }
+  input{
+    background-color: rgb(49, 49, 49);
+    color: white !important;
+  }
+  .customBtn{
+    border-radius: 0px !important;
+    border: yellow 2px solid;
+    color: yellow;
+    background-color: rgb(0, 0, 165);
+    font-family: 'Orbitron', sans-serif;
+  }
+}
 
 
 //Apariencia Dark
+.Dark{
+  border: white 4px solid !important;
+  h1{
+    
+    color: cornsilk !important;
+  }
+  label{
+    
+    color: cornsilk !important;
+  }
+  input{
+    background-color: rgb(49, 49, 49);
+    color: white !important;
+  }
+  .customBtn{
+    
+    border: white 2px solid;
+    color: white;
+    
+    
+  }
+}
+
+//todo cambiar apariencia con bootstrap !!!

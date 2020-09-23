@@ -107,5 +107,35 @@ footer {
 @media screen and (min-width: 1200px) {
   .inputDisplay {
     width: 300px; } }
+.retro {
+  border: white 4px solid !important; }
+  .retro h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: cornsilk !important; }
+  .retro label {
+    font-family: 'Orbitron', sans-serif;
+    color: cornsilk !important; }
+  .retro input {
+    background-color: #313131;
+    color: white !important; }
+  .retro .customBtn {
+    border-radius: 0px !important;
+    border: yellow 2px solid;
+    color: yellow;
+    background-color: #0000a5;
+    font-family: 'Orbitron', sans-serif; }
+
+.Dark {
+  border: white 4px solid !important; }
+  .Dark h1 {
+    color: cornsilk !important; }
+  .Dark label {
+    color: cornsilk !important; }
+  .Dark input {
+    background-color: #313131;
+    color: white !important; }
+  .Dark .customBtn {
+    border: white 2px solid;
+    color: white; }
 
 /*# sourceMappingURL=styles.css.map */

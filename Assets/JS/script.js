@@ -1,8 +1,8 @@
-// document.getElementById("myP").style.fontFamily = "Impact,Charcoal,sans-serif";
+//Logic variables 
 let arrayLetras = []
 let arrayNumeros = []
 const cycleCount = document.getElementById("cycleCount")
-cycleCount.value = 0 
+cycleCount.value = 0
 let messageLettersSing = " la letra: "
 let messageLettersPlur = "n las letras: "
 let messageNumbersSing = " el número: "
@@ -22,6 +22,153 @@ const i_9 = document.getElementById("i9")
 const j_0 = document.getElementById("j0")
 const blankBtn = document.getElementById("blankBtn")
 const resetBtn = document.getElementById("reset")
+//inputs into variables
+let inputLetras = document.getElementById("inputLetras")
+let inputNumeros = document.getElementById("inputNumeros")
+inputLetras.value = localStorage.getItem("Letras")
+inputNumeros.value = localStorage.getItem("Numeros")
+//theme change
+let retroToggle = document.getElementById("retroToggle")
+let retrocount = 1
+let themecount = 1
+//blank button will be disabled until further instruction 
+blankBtn.disabled = true
+//Local Storage
+function guardarLetras(x) {
+    localStorage.setItem("Letras", x)
+}
+function guardarNumeros(x) {
+    localStorage.setItem("Numeros", x)
+}
+function guardarCuenta() {
+    localStorage.setItem("cuenta", cycleCount)
+}
+function accederCuenta() {
+    cycleCount.value = localStorage.getItem("cuenta")
+    console.log(cycleCount.value)
+}
+/*function saveRetroMode() {
+    localStorage.setItem("RetroOn", retrocount)
+}
+function saveDarkTheme() {
+    localStorage.setItem("DarkOn", themecount)
+}*/
+
+function retroTheme() {
+    retrocount += 1
+    
+    if (retrocount % 2 == 0) {
+        document.getElementById("principal").classList.remove("border", "border-info")
+        document.getElementById("principal").classList.add("retro")
+        document.body.style.backgroundColor = "black";
+        document.getElementById("retroToggle").classList.remove("round")
+        document.getElementById("themeToggle").classList.remove("round")
+        document.getElementById("pacman").classList.remove("d-none")
+        changeBtnsRetro()
+        console.log("se agrega retro")
+        localStorage.setItem("RetroOn", true)
+
+    } else {
+        document.getElementById("principal").classList.remove("retro")
+        document.getElementById("principal").classList.add("border", "border-info")
+        console.log("se quita retro")
+        document.body.style.backgroundColor = "initial";
+        document.getElementById("retroToggle").classList.add("round")
+        document.getElementById("themeToggle").classList.add("round")
+        document.getElementById("pacman").classList.add("d-none")
+        localStorage.setItem("RetroOn", false)
+        changeBtnsNormal()
+        
+    }
+}
+function darkTheme() {
+    themecount += 1
+    
+    if (themecount % 2 == 0) {
+        document.getElementById("principal").classList.add("dark","border-light")
+        document.body.style.backgroundColor = "rgb(49, 49, 49)";
+        console.log(document.getElementById("principal"))
+        localStorage.setItem("DarkOn", true)
+        document.getElementById("labelLetras").classList.add("text-light")
+        document.getElementById("labelNumeros").classList.add("text-light")
+        document.getElementById("principal").classList.remove("border-info")
+        changeBtnsdark()
+        document.getElementById("labelRetro").classList.add("text-light")
+        document.getElementById("labelTema").classList.add("text-light")
+        
+    } else {
+        document.getElementById("principal").classList.remove("dark")
+        console.log(document.getElementById("principal"))
+        document.body.style.backgroundColor = "initial";
+        localStorage.setItem("DarkOn", false)
+        document.getElementById("principal").classList.add("border-info")
+        document.getElementById("principal").classList.remove("border-light")
+        document.getElementById("labelLetras").classList.remove("text-light")
+        document.getElementById("labelNumeros").classList.remove("text-light")
+        changeBtnsNormal()
+        document.getElementById("labelRetro").classList.remove("text-light")
+        document.getElementById("labelTema").classList.remove("text-light")
+        
+    }
+
+}
+function setTheme() {
+    let retro = localStorage.getItem("RetroOn")
+    let dark = localStorage.getItem("DarkOn")
+    console.log(retro)
+    console.log(dark)
+    if(retro == "true"){
+        retroTheme()
+        document.getElementById("retro").checked = true
+    } else if( dark == "true"){
+        darkTheme()
+        document.getElementById("dark").checked = true
+    }
+    
+}
+
+accederCuenta()
+
+//themeChanging logic
+
+retroToggle.addEventListener("click", ()=>{
+    retroTheme()
+    localStorage.setItem("DarkOn", false)
+})
+let themeToggle = document.getElementById("themeToggle")
+themeToggle.addEventListener("click", () => {
+    darkTheme() 
+    localStorage.setItem("RetroOn", false)
+})
+
+function changeBtnsRetro(){
+    let x,i
+    x = document.querySelectorAll(".customBtn")
+    for (i = 0; i < x.length; i++){
+        x[i].classList.remove("btn", "btn-outline-info")
+    }
+}
+function changeBtnsNormal() {
+    let x, i
+    x = document.querySelectorAll(".customBtn")
+    for (i = 0; i < x.length; i++) {
+        x[i].classList.add("btn", "btn-outline-info")
+        x[i].classList.remove("btn-outline-light")
+
+    }
+}
+function changeBtnsdark() {
+    let x, i
+    x = document.querySelectorAll(".customBtn")
+    for (i = 0; i < x.length; i++) {
+        x[i].classList.add("btn", "btn-outline-light")
+        x[i].classList.remove("btn-outline-info")
+    }
+}
+
+
+
+
 
 //Enable all Buttons
 function enableBtns (){
@@ -33,28 +180,7 @@ function enableBtns (){
 }
 
 
-//inputs into variables
-let inputLetras = document.getElementById("inputLetras")
-let inputNumeros = document.getElementById("inputNumeros")
-inputLetras.value = localStorage.getItem("Letras")
-inputNumeros.value = localStorage.getItem("Numeros")
-//blank button will be disabled until further instruction 
-blankBtn.disabled = true
-//Local Storage
-function guardarLetras(x){
-    localStorage.setItem("Letras", x)
-}
-function guardarNumeros(x) {
-    localStorage.setItem("Numeros", x)
-}
-function guardarCuenta(){
-    localStorage.setItem("cuenta", cycleCount)
-}
-function accederCuenta(){
-   cycleCount.value = localStorage.getItem("cuenta")
-    console.log(cycleCount.value)
-}
-accederCuenta()
+
 
 //Buttons Logic  
 resetBtn.addEventListener("click", ()=>{
@@ -178,7 +304,7 @@ e_5.addEventListener("click", () => {
         } else if (inputNumeros.value == 1234) {
         inputNumeros.value += 5
         e_5.disabled = true
-        guardarLetras(inputNumeros.value)
+        guardarNumeros(inputNumeros.value)
         } else if (inputNumeros.value == "") {
             swal("Error!", `Te falta${messageNumbersPlur} 1, 2, 3 y 4`, "warning");
 
@@ -213,7 +339,7 @@ f_6.addEventListener("click", () => {
    } else if (inputNumeros.value == 12345) {
        inputNumeros.value += 6
        f_6.disabled = true
-       guardarLetras(inputNumeros.value)
+       guardarNumeros(inputNumeros.value)
         } else if (inputNumeros.value == "") {
        swal("Error!", `Te falta${messageNumbersPlur} 1, 2, 3, 4 y 5`, "warning");
 
@@ -252,7 +378,7 @@ g_7.addEventListener("click", () => {
         if (inputNumeros.value == 123456) {
             inputNumeros.value += 7
             g_7.disabled = true
-            guardarLetras(inputNumeros.value)
+            guardarNumeros(inputNumeros.value)
         } else if (inputNumeros.value == "") {
             swal("Error!", `Te falta${messageNumbersPlur} 1, 2, 3, 4, 5 y 6`, "warning");
 
@@ -295,7 +421,7 @@ if(cycleCount.value==0){
 } else if (inputNumeros.value ==1234567) {
     inputNumeros.value += 8
     h_8.disabled = true
-    guardarLetras(inputNumeros.value)
+    guardarNumeros(inputNumeros.value)
 } else if (inputNumeros.value == "") {
     swal("Error!", `Te falta${messageNumbersPlur} 1, 2, 3, 4, 5, 6 y 7`, "warning");
 
@@ -341,7 +467,7 @@ i_9.addEventListener("click", () => {
     } else if (inputNumeros.value ==12345678) {
         inputNumeros.value += 9
         i_9.disabled = true
-        guardarLetras(inputNumeros.value)
+        guardarNumeros(inputNumeros.value)
     } else if (inputNumeros.value == "") {
         swal("Error!", `Te falta${messageNumbersPlur} 1, 2, 3, 4, 5, 6, 7 y 8`, "warning");
 
